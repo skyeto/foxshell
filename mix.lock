@@ -1,3 +1,7 @@
 %{
+  "artificery": {:hex, :artificery, "0.4.3", "0bc4260f988dcb9dda4b23f9fc3c6c8b99a6220a331534fdf5bf2fd0d4333b02", [:mix], [], "hexpm", "12e95333a30e20884e937abdbefa3e7f5e05609c2ba8cf37b33f000b9ffc0504"},
+  "cowrie": {:hex, :cowrie, "0.3.0", "724e9ead36cde7683da180629b964789028c92044938381539d915e4cffeb322", [:mix], [{:gettext, ">= 0.0.0", [hex: :gettext, repo: "hexpm", optional: false]}, {:table_rex, "~> 3.0", [hex: :table_rex, repo: "hexpm", optional: false]}], "hexpm", "c7dc23e33f3cf78694a843dd0b9797db30bb81348a651cb8b111746578fc24fd"},
   "esshd": {:hex, :esshd, "0.2.0", "038d7fe21c99ec98e2b8763c53c5103d89470f067a615aa56ace318cd13e26c6", [:mix], [], "hexpm", "55a0eaf13834a858b449566b91079994fa1315351f8fa1374c429f5b11fabee7"},
+  "gettext": {:hex, :gettext, "0.18.2", "7df3ea191bb56c0309c00a783334b288d08a879f53a7014341284635850a6e55", [:mix], [], "hexpm", "f9f537b13d4fdd30f3039d33cb80144c3aa1f8d9698e47d7bcbcc8df93b1f5c5"},
+  "table_rex": {:hex, :table_rex, "3.1.1", "0c67164d1714b5e806d5067c1e96ff098ba7ae79413cc075973e17c38a587caa", [:mix], [], "hexpm", "678a23aba4d670419c23c17790f9dcd635a4a89022040df7d5d772cb21012490"},
 }

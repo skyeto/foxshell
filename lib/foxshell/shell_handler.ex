@@ -51,6 +51,8 @@ defmodule Foxshell.ShellHandler do
         IO.puts("""
         Not much to put here....yet.
         """)
+        Cowrie.demo()
+
 
         loop(%{state | counter: state.counter + 1})
 
