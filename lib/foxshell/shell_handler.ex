@@ -56,6 +56,15 @@ defmodule Foxshell.ShellHandler do
       {:input, ^input, 'exit\n'} ->
         IO.puts("Exiting...")
 
+      {:input, ^input, 'flag\n'} ->
+        IO.puts("")
+        IO.puts("Heck!? Why would there be a flag??")
+        IO.puts("")
+        :timer.sleep(750)
+        IO.puts("shhh... this is a secret...\nUmt4QlJ6VWhJR2h2YkNjZ2RYQXVMaTUwYUdseklHbHpiaWQwSUdFZ1kzUm1JSGd6Q2c9PQo=")
+        IO.puts("")
+        loop(%{state | counter: state.counter + 1})
+
       {:input, ^input, 'about\n'} ->
         IO.puts("---------------------------------------")
         IO.puts("== ABOUT ==")
@@ -87,10 +96,12 @@ defmodule Foxshell.ShellHandler do
         loop(%{state | counter: state.counter + 1})
 
       {:input, ^input, 'help\n'} ->
+        IO.puts("")
         IO.puts("== COMMANDS ==")
         IO.puts("""
         > help (this command)
         > about
+        > flag
         > exit
         """)
         IO.puts("")
