@@ -15,7 +15,7 @@ defmodule Foxshell.ShellHandler do
 
     ...connecting...\
     """)
-    Cowrie.spinner(fn -> :timer.sleep(1000) end)
+    :timer.sleep(1000)
     IO.puts("""
 
     connected...congratulations. you have reached the modermodemet
@@ -57,20 +57,20 @@ defmodule Foxshell.ShellHandler do
         IO.puts("Exiting...")
 
       {:input, ^input, 'about\n'} ->
-        Cowrie.hr()
-        Cowrie.h1("About")
-        Cowrie.h2("Who?")
+        IO.puts("---------------------------------------")
+        IO.puts("== ABOUT ==")
+        IO.puts(">> Who?")
         :timer.sleep(500)
-        Cowrie.line("Well isn't it obvious? A fox!")
-        Cowrie.br()
-        Cowrie.br()
+        IO.puts("Well isn't it obvious? A fox!")
+        IO.puts("")
+        IO.puts("")
         :timer.sleep(500)
-        Cowrie.h2("Whaa?")
+        IO.puts(">> Whaa?")
         :timer.sleep(500)
-        Cowrie.line("You heard me.")
-        Cowrie.br()
-        Cowrie.br()
-        Cowrie.line("""
+        IO.puts("You heard me.")
+        IO.puts("")
+        IO.puts("")
+        IO.puts("""
         But in all seriousness, a furry doing tech things and
         bikepacking. Pretty cool stuff if ya' ask me, but some
         people have differing opinions (especially about the
@@ -80,16 +80,20 @@ defmodule Foxshell.ShellHandler do
         name for the above reason that is. Ping me on twitter
         @skyetothefox or on \
         """ <> <<109, 97, 105, 108, 64>> <> "skyeto.com")
-        Cowrie.line("I'd love to talk! <3")
-        Cowrie.br()
-        Cowrie.hr()
-        Cowrie.br()
+        IO.puts("I'd love to talk! <3")
+        IO.puts("")
+        IO.puts("---------------------------------------")
+        IO.puts("")
         loop(%{state | counter: state.counter + 1})
 
       {:input, ^input, 'help\n'} ->
-        Cowrie.h1("Commands")
-        Cowrie.ul(["about", "exit"])
-        Cowrie.br()
+        IO.puts("== COMMANDS ==")
+        IO.puts("""
+        > help (this command)
+        > about
+        > exit
+        """)
+        IO.puts("")
 
 
         loop(%{state | counter: state.counter + 1})
