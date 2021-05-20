@@ -1,7 +1,9 @@
 defmodule Foxshell.ShellHandler do
   use Sshd.ShellHandler
 
-  def on_shell(_username, _pubkey, _ip, _port) do
+  def on_shell(_username, _pubkey, ip, port) do
+    addr = List.foldr(Tuple.to_list(ip), "", fn x, acc -> Integer.to_string(x) <> "." <> acc end) <> ":" <> Integer.to_string(port)
+    Logger.info(">> #{addr} connected PID #{inspect self()}")
     # Thanks to -Brian Kendig-
     :ok = IO.puts("""
      ____
@@ -51,9 +53,15 @@ defmodule Foxshell.ShellHandler do
   defp wait_input(state, input) do
     receive do
       {:input, ^input, {:error, :interrupted}} ->
+        IO.puts("")
+        IO.puts("Byeee! Wanna grab the sauce? GOTO https://github.com/skyeto/foxshell")
+        IO.puts("")
         Logger.info("Closed connection")
 
       {:input, ^input, 'exit\n'} ->
+        IO.puts("")
+        IO.puts("Byeee! Wanna grab the sauce? GOTO https://github.com/skyeto/foxshell")
+        IO.puts("")
         IO.puts("Exiting...")
 
       {:input, ^input, 'flag\n'} ->
@@ -109,7 +117,8 @@ defmodule Foxshell.ShellHandler do
 
         loop(%{state | counter: state.counter + 1})
 
-      {:input, ^input, _code} ->
+      {:input, ^input, code} ->
+        Logger.info(">> #{inspect self()} ran command #{code}")
         IO.puts("Didn't quite catch that, maybe try `help`?")
         IO.puts("")
 
