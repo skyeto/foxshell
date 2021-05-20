@@ -10,6 +10,16 @@ defmodule Foxshell.ShellHandler do
        \\__ _\\____/
           \\_\\_\
     """)
+
+    IO.puts("""
+
+    ...connecting...\
+    """)
+    Cowrie.spinner(fn -> :timer.sleep(1000) end)
+    IO.puts("""
+
+    connected...congratulations. you have reached the modermodemet
+    """)
     loop(run_state([]))
   end
 
@@ -46,18 +56,46 @@ defmodule Foxshell.ShellHandler do
       {:input, ^input, 'exit\n'} ->
         IO.puts("Exiting...")
 
+      {:input, ^input, 'about\n'} ->
+        Cowrie.hr()
+        Cowrie.h1("About")
+        Cowrie.h2("Who?")
+        :timer.sleep(500)
+        Cowrie.line("Well isn't it obvious? A fox!")
+        Cowrie.br()
+        Cowrie.br()
+        :timer.sleep(500)
+        Cowrie.h2("Whaa?")
+        :timer.sleep(500)
+        Cowrie.line("You heard me.")
+        Cowrie.br()
+        Cowrie.br()
+        Cowrie.line("""
+        But in all seriousness, a furry doing tech things and
+        bikepacking. Pretty cool stuff if ya' ask me, but some
+        people have differing opinions (especially about the
+        furry part). Why? I have no idea.
+
+        Wanna contact me? For anything except asking for my
+        name for the above reason that is. Ping me on twitter
+        @skyetothefox or on \
+        """ <> <<109, 97, 105, 108, 64>> <> "skyeto.com")
+        Cowrie.line("I'd love to talk! <3")
+        Cowrie.br()
+        Cowrie.hr()
+        Cowrie.br()
+        loop(%{state | counter: state.counter + 1})
 
       {:input, ^input, 'help\n'} ->
-        IO.puts("""
-        Not much to put here....yet.
-        """)
-        Cowrie.demo()
+        Cowrie.h1("Commands")
+        Cowrie.ul(["about", "exit"])
+        Cowrie.br()
 
 
         loop(%{state | counter: state.counter + 1})
 
       {:input, ^input, _code} ->
-        IO.puts("Didn't quite catch that")
+        IO.puts("Didn't quite catch that, maybe try `help`?")
         IO.puts("")
 
         loop(%{state | counter: state.counter + 1})
