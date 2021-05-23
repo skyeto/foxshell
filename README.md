@@ -1,21 +1,30 @@
 # Foxshell
 
-**TODO: Add description**
+Tiny SSH server
 
-## Installation
+## Development
+```bash
+# Run
+mix deps.get
+mix run --no-halt
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `Foxshell` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:Foxshell, "~> 0.1.0"}
-  ]
-end
+# Connect
+ssh localhost -p1234
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/Foxshell](https://hexdocs.pm/Foxshell).
+## Deployment
 
+```bash
+# Build release
+git clone https://github.com/skyeto/foxshell
+cd foxshell
+MIX_ENV=prod mix release
+cd ..
+
+# Create archive and copy
+tar -cvf foxshell.tar foxshell
+rsync foxshell.tar [remote ssh]:~/test.tar
+
+# Run
+_build/prod/rel/foxshell/bin/foxshell start
+```
