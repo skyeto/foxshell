@@ -25,19 +25,19 @@ defmodule Foxshell.ShellHandler do
     loop(run_state([]))
   end
 
-  def on_connect(username, ip, port, method) do
+  def on_connect(_username, ip, port, method) do
     Logger.debug(fn ->
       """
-      Incoming SSH shell #{inspect(self())} requested for #{username} from #{inspect(ip)}:#{
+      Incoming SSH shell #{inspect(self())} from #{inspect(ip)}:#{
         inspect(port)
       } using #{inspect(method)}
       """
     end)
   end
 
-  def on_disconnect(username, ip, port) do
+  def on_disconnect(_username, ip, port) do
     Logger.debug(fn ->
-      "Disconnecting SSH shell for #{username} from #{inspect(ip)}:#{inspect(port)}"
+      "Disconnecting SSH shell from #{inspect(ip)}:#{inspect(port)}"
     end)
   end
 
@@ -116,7 +116,6 @@ defmodule Foxshell.ShellHandler do
 
 
         loop(%{state | counter: state.counter + 1})
-
       {:input, ^input, code} ->
         Logger.info(">> #{inspect self()} ran command #{code}")
         IO.puts("Didn't quite catch that, maybe try `help`?")

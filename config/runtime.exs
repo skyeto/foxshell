@@ -3,7 +3,7 @@ import Config
 config :esshd,
   enabled: true,
   handler: {Foxshell.ShellHandler, :on_shell, 4},
-  port: 25565,
+  port: 1234,
   priv_dir: "./priv",
   password_authenticator: Foxshell.ShellAuthenticator,
   access_list: Foxshell.AccessList,
